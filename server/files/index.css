@@ -28,9 +28,11 @@ ul {
 }
 
 /* Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
-@media (min-width: 600px) { /* Use a sensible breakpoint */
+@media (min-width: 600px) {
   body {
     display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 120px auto 65px;
     grid-template-areas:
       "h h"
       "n m"
