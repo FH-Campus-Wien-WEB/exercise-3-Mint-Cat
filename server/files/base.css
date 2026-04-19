@@ -1,7 +1,9 @@
+
 body {
-  font-family: "Trebuchet MS", sans-serif;
-  background-color: brown;
-  color: beige;
+    background-color: #1a1b26;
+    color: #8045ea;
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
 }
 
 main {
@@ -9,10 +11,13 @@ main {
 }
 
 button {
-    padding: 4px;
-    border-width: 1px;
-    border-radius: 4px;
-    font-size: 105%;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    transition: background 0.3s;
 }
 
 button:hover {

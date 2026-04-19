@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const movieModel = require('./movie-model.js');
+const genres = require("express/lib/view");
 
 const app = express();
 
@@ -15,13 +16,36 @@ app.use(express.static(path.join(__dirname, 'files')));
    This endpoint returns a sorted array of all the genres of the movies
    that are currently in the movie model.
 */
+app.get('/genres', (req, res) => {
+  const movies = Object.values(movieModel);
+
+  const genresSet = new Set();
+  for (const movie of movies) {
+    for (const genre of movie.Genres) {
+      genresSet.add(genre);
+    }
+  }
+  const genres = Array.from(genresSet).sort();
+  res.send(genres);
+})
 
 /* Task 1.4: Extend the GET /movies endpoint:
    When a query parameter for a specific genre is given, 
    return only movies that have the given genre
  */
 app.get('/movies', function (req, res) {
-  let movies = Object.values(movieModel)
+  const genre = req.query.genre;
+  let movies = Object.values(movieModel);
+
+  if (genre) {
+    movies = movies.filter(movie => {
+      // Check if the movie's Genres array contains the requested genre
+      // Ensure 'Genres' matches the capitalization in your data model [3]
+      return movie.Genres && movie.Genres.includes(genre);
+    });
+  }
+
+  res.json(movies);
   res.send(movies);
 })
 

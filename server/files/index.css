@@ -2,7 +2,8 @@
 
 h1 {
   font-size: 200%;
-  margin: 8px 0px;
+  margin: 8px 0;
+  text-align: center;
 }
 
 /* Constrain the page to the viewport */
@@ -18,60 +19,151 @@ nav {
 }
 
 /* navigation buttons have full width */
-nav button {
-  width: 100%;
-}
 
 /* Remove unnecessary space and bullets from the lists */
 ul {
-  padding: 0px;
+  padding: 0;
   margin: 16px;
   list-style-type: none;
 }
 
 /* Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
+@media (min-width: 600px) { /* Use a sensible breakpoint */
+  body {
+    display: grid;
+    grid-template-areas:
+      "h h"
+      "n m"
+      "f f";
+  }
 
+  header { grid-area: h; }
+  nav    { grid-area: n; }
+  main   { grid-area: m; }
+  footer { grid-area: f; }
+
+  main   {
+    overflow: auto;
+  }
+}
 
 /* Task 3.1. Make the header element a flex container and center its children
    vertically and horizontally.
  */
-
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #16161e;
+  border-bottom: 2px solid #8045ea;
+  padding: 20px;
+}
 
 /* Task 3.2. Make the list items of the unordered list in the nav element a flex container, 
    use column direction and center the child items
  */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  width: 200px;
+}
+
+nav button {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
 
 /* Task 3.3. Make the main element a Flexbox container */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
 
+}
 
 /* Task 3.4. Make the footer's ul a Flexbox container */
-
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  background-color: #16161e;
+  color: #565f89;
+  border-top: 1px solid #414868;
+}
 
 /* From here on styling from exercise 1 */
 img {
   border-radius: 12px;
 }
 
-article {
-  background-color: lightgray;
-  border-radius: 16px;
-  padding: 16px;
-  width: 384px;
-  margin: 8px;
-}
-
-a {
-  color: beige;
-}
-
 span {
+  margin-left: 1rem;
   margin-right: 4px;
 }
 
 .genre {
+  background-color: #bb9af7;
+  color: #1a1b26;
   padding: 4px 8px;
   border: solid black 1px;
   border-radius: 6px;
-  background-color: darkgray;
   font-weight: bold;
+}
+
+article {
+  margin: 2vw;
+  border-radius: 12px;
+  width: 40%;
+  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #24283b;
+  border: 1px solid #414868;
+  color: #a9b1d6;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s;
+}
+
+article:hover {
+  transform: translateY(-10px);
+  transition: transform 0.2s;
+  opacity: 1;
+  border-color: #bb9af7;
+  background-color: #2f3549;
+}
+
+article h1 {
+  color: #8045ea;
+}
+
+article h2 {
+  color: #a9b1d6;
+}
+
+article img {
+  max-width: 100%; /* The image will never be wider than the movie card */
+  height: auto;    /* The image maintains its aspect ratio as it scales */
+  display: block;  /* Removes the small gap at the bottom of the image */
+  margin: 0 auto;  /* Ensures it stays centered if the card is wider */
+}
+
+article p {
+  display: flex;
+  flex-wrap: wrap;      /* This allows genres to move to a new line if they don't fit */
+  justify-content: center; /* Keeps tags centered within the card */
+  gap: 8px;             /* Adds consistent space between the genre tags */
+  margin: 10px 0;
 }
